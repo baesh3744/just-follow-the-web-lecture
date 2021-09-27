@@ -9,12 +9,8 @@ type GatsbyImageProps = {
     className?: string;
 };
 
-export interface PostHeadProps extends PostHeadInfoProps {
-    thumbnail: {
-        childImageSharp: {
-            fluid: FluidObject;
-        };
-    };
+interface PostHeadProps extends PostHeadInfoProps {
+    thumbnail: FluidObject;
 }
 
 const PostHeaderWrapper = styled.div`
@@ -45,13 +41,11 @@ const PostHead: FunctionComponent<PostHeadProps> = function ({
     title,
     date,
     categories,
-    thumbnail: {
-        childImageSharp: { fluid },
-    },
+    thumbnail,
 }) {
     return (
         <PostHeaderWrapper>
-            <BackgroundImage fluid={fluid} alt="thumbnail" />
+            <BackgroundImage fluid={thumbnail} alt="thumbnail" />
             <PostHeadInfo title={title} date={date} categories={categories} />
         </PostHeaderWrapper>
     );
