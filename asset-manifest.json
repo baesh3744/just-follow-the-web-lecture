@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/just-follow-the-web-lecture/static/css/main.59b9beff.chunk.css",
+    "main.js": "/just-follow-the-web-lecture/static/js/main.25074e25.chunk.js",
+    "main.js.map": "/just-follow-the-web-lecture/static/js/main.25074e25.chunk.js.map",
+    "runtime-main.js": "/just-follow-the-web-lecture/static/js/runtime-main.f865095b.js",
+    "runtime-main.js.map": "/just-follow-the-web-lecture/static/js/runtime-main.f865095b.js.map",
+    "static/js/2.96a26cb2.chunk.js": "/just-follow-the-web-lecture/static/js/2.96a26cb2.chunk.js",
+    "static/js/2.96a26cb2.chunk.js.map": "/just-follow-the-web-lecture/static/js/2.96a26cb2.chunk.js.map",
+    "index.html": "/just-follow-the-web-lecture/index.html",
+    "static/css/main.59b9beff.chunk.css.map": "/just-follow-the-web-lecture/static/css/main.59b9beff.chunk.css.map",
+    "static/js/2.96a26cb2.chunk.js.LICENSE.txt": "/just-follow-the-web-lecture/static/js/2.96a26cb2.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f865095b.js",
+    "static/js/2.96a26cb2.chunk.js",
+    "static/css/main.59b9beff.chunk.css",
+    "static/js/main.25074e25.chunk.js"
+  ]
+}
