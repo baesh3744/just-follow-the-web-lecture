@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
-import { updateProfile } from "@firebase/auth";
 import { authService } from "fbase";
+import "./Profile.css";
 
 const Profile = ({ refreshUser, userObj }) => {
     let history = useHistory();
@@ -22,24 +22,35 @@ const Profile = ({ refreshUser, userObj }) => {
     const onSubmit = async (event) => {
         event.preventDefault();
         if (userObj.displayName !== newDisplayName) {
-            await updateProfile(userObj, { displayName: newDisplayName });
+            await userObj.updateProfile({
+                displayName: newDisplayName,
+            });
         }
         refreshUser();
     };
 
     return (
-        <React.Fragment>
-            <form onSubmit={onSubmit}>
+        <div className='container'>
+            <form className='profileForm' onSubmit={onSubmit}>
                 <input
+                    className='formInput'
                     type='text'
                     placeholder='Display name'
                     onChange={onChange}
                     value={newDisplayName}
+                    autoFocus
                 />
-                <input type='submit' value='Update Profile' />
+                <input
+                    className='formBtn'
+                    type='submit'
+                    value='Update Profile'
+                    style={{ marginTop: 10 }}
+                />
             </form>
-            <button onClick={onLogOutClick}>Log Out</button>
-        </React.Fragment>
+            <span className='formBtn cancelBtn logOut' onClick={onLogOutClick}>
+                Log Out
+            </span>
+        </div>
     );
 };
 

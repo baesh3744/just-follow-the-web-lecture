@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { updateProfile } from "@firebase/auth";
 import AppRouter from "components/Router";
 import { authService } from "fbase";
 
@@ -12,8 +13,10 @@ function App() {
                 setUserObj({
                     displayName: user.displayName,
                     uid: user.uid,
-                    updateProfile: (args) => user.updateProfile(args),
+                    updateProfile: (args) => updateProfile(user, args),
                 });
+            } else {
+                setUserObj(null);
             }
             setInit(true);
         });
@@ -24,7 +27,7 @@ function App() {
         setUserObj({
             displayName: user.displayName,
             uid: user.uid,
-            updateProfile: (args) => user.updateProfile(args),
+            updateProfile: (args) => updateProfile(user, args),
         });
     };
 
@@ -39,7 +42,6 @@ function App() {
             ) : (
                 "Initializing..."
             )}
-            <footer>&copy; {new Date().getFullYear()} Nwitter</footer>
         </React.Fragment>
     );
 }

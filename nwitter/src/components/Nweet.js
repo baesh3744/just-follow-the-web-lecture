@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { deleteDoc, doc, updateDoc } from "@firebase/firestore";
 import { deleteObject, ref } from "@firebase/storage";
+import { faTrash, faPencilAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { dbService, storageService } from "fbase";
+import "./Nweet.css";
 
 const Nweet = ({ nweetObj, isOwner }) => {
     const [editing, setEditing] = useState(false);
@@ -33,43 +36,44 @@ const Nweet = ({ nweetObj, isOwner }) => {
     };
 
     return (
-        <div>
+        <div className='nweet'>
             {editing ? (
                 <React.Fragment>
-                    {isOwner && (
-                        <React.Fragment>
-                            <form onSubmit={onSubmit}>
-                                <input
-                                    type='text'
-                                    placeholder='Edit your nweet'
-                                    value={newNweet}
-                                    onChange={onChange}
-                                    required
-                                />
-                                <input type='submit' value='Update Nweet' />
-                            </form>
-                            <button onClick={toggleEditing}>Cancel</button>
-                        </React.Fragment>
-                    )}
+                    <form className='container nweetEdit' onSubmit={onSubmit}>
+                        <input
+                            className='formInput'
+                            type='text'
+                            placeholder='Edit your nweet'
+                            value={newNweet}
+                            onChange={onChange}
+                            autoFocus
+                            required
+                        />
+                        <input
+                            className='formBtn'
+                            type='submit'
+                            value='Update Nweet'
+                        />
+                    </form>
+                    <span className='formBtn cancelBtn' onClick={toggleEditing}>
+                        Cancel
+                    </span>
                 </React.Fragment>
             ) : (
                 <React.Fragment>
                     <h4>{nweetObj.text}</h4>
                     {nweetObj.attachmentUrl && (
-                        <img
-                            src={nweetObj.attachmentUrl}
-                            alt='Attachment'
-                            width='50px'
-                            height='50px'
-                        />
+                        <img src={nweetObj.attachmentUrl} alt='Attachment' />
                     )}
                     {isOwner && (
-                        <React.Fragment>
-                            <button onClick={onDeleteClick}>
-                                Delete Nweet
-                            </button>
-                            <button onClick={toggleEditing}>Edit Nweet</button>
-                        </React.Fragment>
+                        <div className='nweet__actions'>
+                            <span onClick={onDeleteClick}>
+                                <FontAwesomeIcon icon={faTrash} />
+                            </span>
+                            <span onClick={toggleEditing}>
+                                <FontAwesomeIcon icon={faPencilAlt} />
+                            </span>
+                        </div>
                     )}
                 </React.Fragment>
             )}
