@@ -1,7 +1,43 @@
-const sayHi = (name: string, age: number, gender: string): string => {
-    return `Hello ${name}, you are ${age}, you are a ${gender}`;
-};
+import * as CtyptoJS from "crypto-js";
 
-console.log(sayHi("Nicolas", 24, "male"));
+class Block {
+    public index: number;
+    public hash: string;
+    public previousHash: string;
+    public data: string;
+    public timestamp: number;
+
+    static calculateBlockHash = (
+        index: number,
+        previousHash: string,
+        timestamp: number,
+        data: string
+    ): string =>
+        CtyptoJS.SHA256(index + previousHash + timestamp + data).toString();
+
+    constructor(
+        index: number,
+        hash: string,
+        previousHash: string,
+        data: string,
+        timestamp: number
+    ) {
+        this.index = index;
+        this.hash = hash;
+        this.previousHash = previousHash;
+        this.data = data;
+        this.timestamp = timestamp;
+    }
+}
+
+const genesisBlock: Block = new Block(0, "2020202020", "", "Hello", 123456);
+
+let blockchain: Block[] = [genesisBlock];
+
+const getBlockchain = (): Block[] => blockchain;
+
+const getLatestBlock = (): Block => blockchain[blockchain.length - 1];
+
+const getNewTimeStamp = (): number => Math.round(new Date().getTime() / 1000);
 
 export {};
